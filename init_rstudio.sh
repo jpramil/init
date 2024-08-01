@@ -6,12 +6,17 @@ RPROFILE="$HOME/.Rprofile"
 # Commande R à ajouter à .Rprofile
 R_COMMAND='prenom <- "John"'
 
-# Vérifier si la commande est déjà présente dans .Rprofile
+# Créer le fichier .Rprofile s'il n'existe pas
+if [ ! -f "$RPROFILE" ]; then
+    touch "$RPROFILE"
+    echo "Le fichier .Rprofile a été créé."
+fi
+
+# Ajouter la commande R au fichier .Rprofile si elle n'est pas déjà présente
 if grep -Fxq "$R_COMMAND" "$RPROFILE"
 then
     echo "La variable 'prenom' est déjà définie dans .Rprofile."
 else
-    # Ajouter la commande au fichier .Rprofile
     echo "$R_COMMAND" >> "$RPROFILE"
     echo "La variable 'prenom' a été ajoutée à .Rprofile."
 fi
