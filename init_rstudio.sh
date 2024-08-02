@@ -40,31 +40,4 @@ JSON_CONTENT='{
 }'
 # Écrire le contenu JSON dans le fichier de configuration
 echo "$JSON_CONTENT" > "$PREFS_FILE"
-echo "Native pipe and %aterial theme used"
-
-
-# Ajout de shortcuts  --------------------------------------------------------------------
-
-#!/bin/bash
-
-# Chemin vers le répertoire de configuration de RStudio
-RSTUDIO_CONFIG_DIR="$HOME/.config/rstudio/keybindings"
-
-# Fichier de configuration des raccourcis clavier
-KEYBINDINGS_FILE="$RSTUDIO_CONFIG_DIR/rstudio_bindings.json"
-
-# Créer le répertoire de configuration si nécessaire
-mkdir -p "$RSTUDIO_CONFIG_DIR"
-
-# Contenu JSON pour modifier le raccourci clavier
-JSON_CONTENT='{
-    "editor_keybindings": {
-        "Ctrl+Shift+M": "insertText(\" |> \")"
-    }
-}'
-
-# Écrire le contenu JSON dans le fichier de configuration
-echo "$JSON_CONTENT" > "$KEYBINDINGS_FILE"
-
-# Optionnel : Afficher un message pour confirmer que le script a été exécuté
-echo "Le raccourci clavier Ctrl+Shift+M a été modifié pour générer le pipe natif |> dans RStudio."
+echo "Native pipe and Material theme used"
