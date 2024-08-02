@@ -23,3 +23,40 @@ fi
 
 # Optionnel : Afficher un message pour confirmer que le script a été exécuté
 echo "Le script d'initialisation bash a été exécuté."
+
+
+# Ajout du pipi natif --------------------------------------------------------------------
+
+#!/bin/bash
+
+# Chemin vers le répertoire de configuration de RStudio
+RSTUDIO_CONFIG_DIR="$HOME/.config/rstudio/keybindings"
+
+# Fichier de configuration des raccourcis clavier
+KEYBINDINGS_FILE="$RSTUDIO_CONFIG_DIR/rstudio_bindings.json"
+
+# Créer le répertoire de configuration si nécessaire
+mkdir -p "$RSTUDIO_CONFIG_DIR"
+
+# Contenu JSON pour modifier le raccourci clavier
+JSON_CONTENT='{
+    "commands": {
+        "insertPipeNative": {
+            "command": "insertText",
+            "args": {
+                "text": " |> "
+            }
+        }
+    },
+    "bindings": {
+        "editor": {
+            "Ctrl+Shift+M": "insertPipeNative"
+        }
+    }
+}'
+
+# Écrire le contenu JSON dans le fichier de configuration
+echo "$JSON_CONTENT" > "$KEYBINDINGS_FILE"
+
+# Optionnel : Afficher un message pour confirmer que le script a été exécuté
+echo "Le raccourci clavier Ctrl+Shift+M a été modifié pour générer le pipe natif |> dans RStudio."
