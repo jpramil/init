@@ -29,7 +29,7 @@ echo "Le script d'initialisation bash a été exécuté."
 # Utilisation du pipe natif  ------------------------------------------------------------
 RSTUDIO_CONFIG_DIR="$HOME/.config/rstudio/"
 # Fichier de configuration des préférences
-PREFS_FILE="$RSTUDIO_CONFIG_DIR/rstudio_prefs.json"
+PREFS_FILE="$RSTUDIO_CONFIG_DIR/rstudio-prefs.json"
 # Créer le répertoire de configuration si nécessaire (il ne se passe rien s'il existe déjà)
 mkdir -p "$RSTUDIO_CONFIG_DIR"
 # Contenu JSON pour modifier le raccourci clavier
