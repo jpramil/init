@@ -40,18 +40,8 @@ mkdir -p "$RSTUDIO_CONFIG_DIR"
 
 # Contenu JSON pour modifier le raccourci clavier
 JSON_CONTENT='{
-    "commands": {
-        "insertPipeNative": {
-            "command": "insertText",
-            "args": {
-                "text": " |> "
-            }
-        }
-    },
-    "bindings": {
-        "editor": {
-            "Ctrl+Shift+M": "insertPipeNative"
-        }
+    "editor_keybindings": {
+        "Ctrl+Shift+M": "insertText(\" |> \")"
     }
 }'
 
