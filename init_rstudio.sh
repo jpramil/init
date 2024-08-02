@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Script d'init pour Rstudio ------------------------------------------------------------
 
 # Utilisation du pipe natif
