@@ -1,32 +1,8 @@
-#!/bin/bash
+# Script d'init pour Rstudio ------------------------------------------------------------
 
-# Chemin vers le fichier .Rprofile dans le répertoire personnel de l'utilisateur
-RPROFILE="$HOME/.Rprofile"
+# Utilisation du pipe natif
+# Theme custom
 
-# Commande R à ajouter à .Rprofile
-R_COMMAND='prenom <- "John"'
-
-# Créer le fichier .Rprofile s'il n'existe pas
-if [ ! -f "$RPROFILE" ]; then
-    touch "$RPROFILE"
-    echo "Le fichier .Rprofile a été créé."
-fi
-
-# Ajouter la commande R au fichier .Rprofile si elle n'est pas déjà présente
-if grep -Fxq "$R_COMMAND" "$RPROFILE"
-then
-    echo "La variable 'prenom' est déjà définie dans .Rprofile."
-else
-    echo "$R_COMMAND" >> "$RPROFILE"
-    echo "La variable 'prenom' a été ajoutée à .Rprofile."
-fi
-
-# Optionnel : Afficher un message pour confirmer que le script a été exécuté
-echo "Le script d'initialisation bash a été exécuté."
-
-
-
-# Utilisation du pipe natif  ------------------------------------------------------------
 RSTUDIO_CONFIG_DIR="$HOME/.config/rstudio/"
 # Fichier de configuration des préférences
 PREFS_FILE="$RSTUDIO_CONFIG_DIR/rstudio-prefs.json"
@@ -36,7 +12,26 @@ mkdir -p "$RSTUDIO_CONFIG_DIR"
 JSON_CONTENT='{
     "insert_native_pipe_operator": true,
     "posix_terminal_shell": "bash",
-    "editor_theme": "Material"
+    "editor_theme": "Material",
+    "server_editor_font_enabled": true,
+    "save_workspace": "never",
+    "load_workspace": false,
+    "remove_history_duplicates": true,
+    "auto_detect_indentation": true,
+    "highlight_selected_line": true,
+    "relative_line_numbers": true,
+    "show_invisibles": true,
+    "highlight_r_function_calls": true,
+    "rainbow_parentheses": true,
+    "auto_append_newline": true,
+    "strip_trailing_whitespace": true,
+    "check_unexpected_assignment_in_function_call": true,
+    "style_diagnostics": true,
+    "default_encoding": "UTF-8",
+    "indent_guides": "gray",
+    "syntax_color_console": true,
+    "show_panel_focus_rectangle": true,
+
 }'
 # Écrire le contenu JSON dans le fichier de configuration
 echo "$JSON_CONTENT" > "$PREFS_FILE"
