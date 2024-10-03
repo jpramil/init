@@ -1,27 +1,38 @@
 #!/bin/bash
 
-# Définir le répertoire de configuration de VS Code
+# This init script is used for : 
+# - Defining personnal keyboard shortcuts
+# - Using dark mode (regardless of the browser mode).
+# Expected parameters : None
+
+
+# Define the configuration directory for VS Code
 VSCODE_CONFIG_DIR="$HOME/.local/share/code-server/User"
 
-# Créer le répertoire de configuration si nécessaire
+# Create the configuration directory if necessary
 mkdir -p "$VSCODE_CONFIG_DIR"
 
-# Fichier de paramètres utilisateur
+# User settings file
 SETTINGS_FILE="$VSCODE_CONFIG_DIR/settings.json"
 
-# Activer le mode sombre par défaut
+# Enable dark mode by default
 echo '{
     "workbench.colorTheme": "Default Dark Modern"
 }' > "$SETTINGS_FILE"
 
-# Fichier de raccourcis clavier
+# Keybindings file
 KEYBINDINGS_FILE="$VSCODE_CONFIG_DIR/keybindings.json"
 
-# Ajouter le raccourci pour dupliquer les lignes
+# Add shortcuts for duplicating and deleting lines
 echo '[
     {
         "key": "ctrl+shift+d",
         "command": "editor.action.duplicateSelection"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "editor.action.deleteLines",
+        "when": "editorTextFocus"
     }
 ]' > "$KEYBINDINGS_FILE"
 
