@@ -4,6 +4,7 @@
 # - Defining personnal keyboard shortcuts
 # - Using dark mode (regardless of the browser mode).
 # Expected parameters : None
+# Use nbstripout to prevent notebooks outputs to be pushed
 
 
 # Define the configuration directory for VS Code
@@ -35,5 +36,13 @@ echo '[
         "when": "editorTextFocus"
     }
 ]' > "$KEYBINDINGS_FILE"
+
+# Install nbstripout
+echo "Installing nbstripout..."
+pip install nbstripout
+
+# Run nbstripout installation command in the terminal
+echo "Running nbstripout --install..."
+nbstripout --install
 
 echo "Personal init done."
