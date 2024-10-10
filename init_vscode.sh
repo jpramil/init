@@ -3,21 +3,7 @@
 # This init script is used for:
 # - Defining personal keyboard shortcuts for VS Code.
 # - Enforcing dark mode in VS Code, regardless of system/browser settings.
-# - Installing and configuring tools like nbstripout, ruff, and pre-commit for better code quality.
-#
-# Features:
-# 1. VS Code configuration:
-#    - Enables "Default Dark Modern" color theme.
-#    - Adds custom keyboard shortcuts for:
-#      * Duplicating lines: CTRL + Shift + D
-#      * Deleting lines: CTRL + D
-#      * Navigating to the previous editor tab: CTRL + Alt + Left Arrow
-#      * Navigating to the next editor tab: CTRL + Alt + Right Arrow
-#
-# 2. Code quality tools:
-#    - Installs `nbstripout` to strip outputs from Jupyter notebooks, preventing notebook outputs from being included in version control.
-#    - Installs `ruff` as a fast Python linter to enforce code style and quality.
-#    - Installs `pre-commit` to manage and run pre-commit hooks for automatic checks before committing code (e.g., running `ruff`).
+# - Installing and configuring tools like nbstripout
 #
 # Expected parameters: None
 # Assumptions: 
@@ -71,17 +57,5 @@ pip install nbstripout
 # Run nbstripout installation command in the terminal
 echo "Running nbstripout --install..."
 nbstripout --install
-
-# Install ruff
-echo "Installing ruff..."
-pip install ruff
-
-# Install pre-commit
-echo "Installing pre-commit..."
-pip install pre-commit
-
-# Run pre-commit installation
-echo "Running pre-commit install..."
-pre-commit install
 
 echo "Personal init done."
