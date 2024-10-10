@@ -55,6 +55,10 @@ echo "Installing nbstripout..."
 pip install nbstripout
 
 # Run nbstripout installation command in the terminal
+repo_name=$(echo $GIT_REPOSITORY | sed 's#.*/\([^/]*\)\.git#\1#')
+echo $repo_name
+cd $HOME/work/$repo_name && pre-commit install
+
 echo "Running nbstripout --install..."
 nbstripout --install
 
