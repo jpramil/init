@@ -50,14 +50,14 @@ echo '[
     }
 ]' > "$KEYBINDINGS_FILE"
 
-# Install nbstripout
-echo "Installing nbstripout..."
-pip install nbstripout
-
-# Run nbstripout installation command in the terminal
-repo_name=$(echo $GIT_REPOSITORY | sed 's#.*/\([^/]*\)\.git#\1#')
-echo $repo_name
-echo "Running nbstripout --install..."
-cd $HOME/work/$repo_name && nbstripout --install
+# # Install nbstripout
+# echo "Installing nbstripout..."
+# pip install nbstripout
+# 
+# # Run nbstripout installation command in the terminal
+# repo_name=$(echo $GIT_REPOSITORY | sed 's#.*/\([^/]*\)\.git#\1#')
+# echo $repo_name
+# echo "Running nbstripout --install..."
+# cd $HOME/work/$repo_name && nbstripout --install
 
 echo "Personal init done."
