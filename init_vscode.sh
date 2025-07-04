@@ -47,13 +47,30 @@ echo '[
     {
         "key": "ctrl+alt+right",
         "command": "workbench.action.nextEditor"
+    },
+    {
+        "key": "ctrl+q",
+        "command": "workbench.action.closeActiveEditor"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "expandLineSelection",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+numpad2",
+        "command": "workbench.action.terminal.focus"
+    },
+    {
+        "key": "ctrl+numpad8",
+        "command": "workbench.action.focusActiveEditorGroup"
     }
 ]' > "$KEYBINDINGS_FILE"
 
-# # Install nbstripout
+# Install nbstripout
 # echo "Installing nbstripout..."
 # pip install nbstripout
-# 
+
 # # Run nbstripout installation command in the terminal
 # repo_name=$(echo $GIT_REPOSITORY | sed 's#.*/\([^/]*\)\.git#\1#')
 # echo $repo_name
