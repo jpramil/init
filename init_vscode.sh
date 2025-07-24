@@ -62,6 +62,10 @@ echo '[
         "command": "workbench.action.terminal.focus"
     },
     {
+        "key": "ctrl+alt+down",
+        "command": "workbench.action.terminal.focusNext"
+    },
+    {
         "key": "ctrl+numpad8",
         "command": "workbench.action.focusActiveEditorGroup"
     }
