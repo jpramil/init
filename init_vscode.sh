@@ -68,6 +68,10 @@ echo '[
     {
         "key": "ctrl+numpad8",
         "command": "workbench.action.focusActiveEditorGroup"
+    },
+    {
+        "key": "ctrl+numpad4",
+        "command": "workbench.files.action.focusFilesExplorer"
     }
 ]' > "$KEYBINDINGS_FILE"
 
