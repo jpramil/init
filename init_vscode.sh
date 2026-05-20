@@ -93,14 +93,8 @@ echo "Node version: $(node --version)"
 echo "Claude Code version: $(claude --version)"
 echo "Done! Run 'claude' to start."
 
-
-# Install nbstripout
-# echo "Installing nbstripout..."
-# pip install nbstripout
-
-# # Run nbstripout installation command in the terminal
-# repo_name=$(echo $GIT_REPOSITORY | sed 's#.*/\([^/]*\)\.git#\1#')
-# echo $repo_name
+# Install tmux
+sudo apt-get update && sudo apt-get install -y tmux
 # echo "Running nbstripout --install..."
 # cd $HOME/work/$repo_name && nbstripout --install
 
