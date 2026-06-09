@@ -1,8 +1,8 @@
 #!/bin/bash
-
 # This init script is used for:
 # - Defining personal keyboard shortcuts for VS Code.
 # - Enforcing dark mode in VS Code, regardless of system/browser settings.
+# - Disabling paste pop-ups (paste selector + multi-line terminal warning).
 # - Installing and configuring tools like nbstripout
 #
 # Expected parameters: None
@@ -14,21 +14,20 @@
 
 # Define the configuration directory for VS Code
 VSCODE_CONFIG_DIR="$HOME/.local/share/code-server/User"
-
 # Create the configuration directory if necessary
 mkdir -p "$VSCODE_CONFIG_DIR"
 
 # User settings file
 SETTINGS_FILE="$VSCODE_CONFIG_DIR/settings.json"
-
-# Enable dark mode by default
+# Enable dark mode by default + disable paste pop-ups
 echo '{
-    "workbench.colorTheme": "Default Dark Modern"
+    "workbench.colorTheme": "Default Dark Modern",
+    "editor.pasteAs.enabled": false,
+    "terminal.integrated.enableMultiLinePasteWarning": "never"
 }' > "$SETTINGS_FILE"
 
 # Keybindings file
 KEYBINDINGS_FILE="$VSCODE_CONFIG_DIR/keybindings.json"
-
 # Add shortcuts for duplicating, deleting lines, and navigating tabs
 echo '[
     {
@@ -77,24 +76,22 @@ echo '[
 
 # Install nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-
 # Load nvm
 export NVM_DIR="$HOME/.nvm"
 source "$NVM_DIR/nvm.sh"
-
 # Install Node LTS
 nvm install --lts
 nvm use --lts
 
 # Install Claude Code
 npm install -g @anthropic-ai/claude-code
-
 echo "Node version: $(node --version)"
 echo "Claude Code version: $(claude --version)"
 echo "Done! Run 'claude' to start."
 
 # Install tmux
 sudo apt-get update && sudo apt-get install -y tmux
+
 # echo "Running nbstripout --install..."
 # cd $HOME/work/$repo_name && nbstripout --install
 
