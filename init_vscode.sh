@@ -3,14 +3,19 @@
 # - Defining personal keyboard shortcuts for VS Code.
 # - Enforcing dark mode in VS Code, regardless of system/browser settings.
 # - Disabling paste pop-ups (paste selector + multi-line terminal warning).
+# - Installing Claude Code and pre-configuring its permissions globally.
 # - Installing and configuring tools like nbstripout
 #
 # Expected parameters: None
-# Assumptions: 
+# Assumptions:
 # - Python environment with `pip` is already available for installing packages.
 #
-# Usage: 
+# Usage:
 # Simply run this script to set up your environment with the necessary configurations and tools.
+
+# ----------------------------------------------------------------------------
+# VS Code configuration
+# ----------------------------------------------------------------------------
 
 # Define the configuration directory for VS Code
 VSCODE_CONFIG_DIR="$HOME/.local/share/code-server/User"
@@ -74,6 +79,10 @@ echo '[
     }
 ]' > "$KEYBINDINGS_FILE"
 
+# ----------------------------------------------------------------------------
+# Node + Claude Code
+# ----------------------------------------------------------------------------
+
 # Install nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 # Load nvm
@@ -87,7 +96,44 @@ nvm use --lts
 npm install -g @anthropic-ai/claude-code
 echo "Node version: $(node --version)"
 echo "Claude Code version: $(claude --version)"
+
+# ----------------------------------------------------------------------------
+# Claude Code permissions (global - applies to every session, any repo)
+# ----------------------------------------------------------------------------
+
+mkdir -p "$HOME/.claude"
+cat > "$HOME/.claude/settings.json" <<'EOF'
+{
+    "permissions": {
+        "allow": [
+            "Bash(git status)",
+            "Bash(git diff:*)",
+            "Bash(git log:*)",
+            "Bash(git add:*)",
+            "Bash(ls:*)",
+            "Bash(cat:*)",
+            "Bash(python:*)",
+            "Bash(pytest:*)",
+            "Bash(ruff:*)",
+            "Bash(uv:*)",
+            "Bash(pip:*)",
+            "Read(*)",
+            "Edit(*)"
+        ],
+        "deny": [
+            "Bash(rm -rf:*)",
+            "Bash(git push:*)"
+        ]
+    }
+}
+EOF
+echo "Wrote global Claude Code permissions to ~/.claude/settings.json"
+
 echo "Done! Run 'claude' to start."
+
+# ----------------------------------------------------------------------------
+# Other tools
+# ----------------------------------------------------------------------------
 
 # Install tmux
 sudo apt-get update && sudo apt-get install -y tmux
