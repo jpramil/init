@@ -83,18 +83,7 @@ echo '[
 # Node + Claude Code
 # ----------------------------------------------------------------------------
 
-# Install nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-# Load nvm
-export NVM_DIR="$HOME/.nvm"
-source "$NVM_DIR/nvm.sh"
-# Install Node LTS
-nvm install --lts
-nvm use --lts
-
-# Install Claude Code
-npm install -g @anthropic-ai/claude-code
-echo "Node version: $(node --version)"
+curl -fsSL https://claude.ai/install.sh | bash
 echo "Claude Code version: $(claude --version)"
 
 # ----------------------------------------------------------------------------
