@@ -91,6 +91,8 @@ echo "Claude Code version: $(claude --version)"
 # Claude Code permissions (global - applies to every session, any repo)
 # ----------------------------------------------------------------------------
 
+export CLAUDE_CODE_OAUTH_TOKEN="$(vault kv get -field=CLAUDE_CODE_OAUTH_TOKEN onyxia-kv/jpramil/claude)"
+
 mkdir -p "$HOME/.claude"
 cat > "$HOME/.claude/settings.json" <<'EOF'
 {
@@ -132,3 +134,6 @@ sudo apt-get update && sudo apt-get install -y tmux
 # cd $HOME/work/$repo_name && nbstripout --install
 
 echo "Personal init done."
+
+
+
