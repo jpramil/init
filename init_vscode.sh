@@ -91,7 +91,22 @@ echo "Claude Code version: $(claude --version)"
 # Claude Code permissions (global - applies to every session, any repo)
 # ----------------------------------------------------------------------------
 
-export CLAUDE_CODE_OAUTH_TOKEN="$(vault kv get -field=CLAUDE_CODE_OAUTH_TOKEN onyxia-kv/jpramil/claude)"
+# Read the subscription token from Vault in every new terminal (an export here
+# would die with this script). No vault CLI in the image: use the HTTP API with
+# the VAULT_* variables injected by Onyxia. Expects a secret "claude" with a key
+# CLAUDE_CODE_OAUTH_TOKEN in your Vault space (generated with `claude setup-token`).
+cat >> ~/.bashrc <<'EOF'
+export CLAUDE_CODE_OAUTH_TOKEN="$(curl -fsS -H "X-Vault-Token: $VAULT_TOKEN" \
+    "$VAULT_ADDR/v1/${VAULT_MOUNT:-onyxia-kv}/data/$VAULT_TOP_DIR/claude" 2>/dev/null \
+    | jq -r '.data.data.CLAUDE_CODE_OAUTH_TOKEN // empty' | tr -d '[:space:]')"
+EOF
+
+# Skip the first-run onboarding screens (otherwise Claude Code asks to log in)
+if [ -f "$HOME/.claude.json" ]; then
+    jq '.hasCompletedOnboarding = true' "$HOME/.claude.json" > /tmp/claude.json && mv /tmp/claude.json "$HOME/.claude.json"
+else
+    echo '{"hasCompletedOnboarding": true}' > "$HOME/.claude.json"
+fi
 
 mkdir -p "$HOME/.claude"
 cat > "$HOME/.claude/settings.json" <<'EOF'
